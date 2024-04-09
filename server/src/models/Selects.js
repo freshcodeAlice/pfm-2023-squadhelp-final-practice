@@ -1,7 +1,15 @@
-
+const {
+  Model
+} = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  const SelectBox = sequelize.define('Selects', {
+  class Select extends Model {
+   
+    static associate(models) {
+      
+    }
+  }
+  Select.init({
     type: {
       allowNull: false,
       primaryKey: true,
@@ -12,10 +20,32 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       type: DataTypes.STRING,
     },
-  },
-  {
-    timestamps: false,
+  }, {
+    sequelize,
+    modelName: 'Select',
+    tableName: 'Selects',
+    underscored: false,
+    timestamps: false
   });
-
-  return SelectBox;
+  return Select;
 };
+
+// module.exports = (sequelize, DataTypes) => {
+//   const SelectBox = sequelize.define('Selects', {
+//     type: {
+//       allowNull: false,
+//       primaryKey: true,
+//       type: DataTypes.STRING,
+//     },
+//     describe: {
+//       allowNull: false,
+//       primaryKey: true,
+//       type: DataTypes.STRING,
+//     },
+//   },
+//   {
+//     timestamps: false,
+//   });
+
+//   return SelectBox;
+// };
