@@ -177,6 +177,13 @@ const resolveOffer = async (
     contestId,
   }, transaction);
   transaction.commit();
+  // транзакція пройшла? додаємо в історію
+  const trans = await db.Transaction.create({
+    userId: creatorId,
+    contestId,
+    type: 'cashin',
+    amout: finishedContest.prize
+  })
   const arrayRoomsId = [];
   updatedOffers.forEach(offer => {
     if (offer.status === CONSTANTS.OFFER_STATUS_REJECTED && creatorId !==

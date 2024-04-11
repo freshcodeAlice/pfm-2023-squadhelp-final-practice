@@ -141,7 +141,14 @@ module.exports.payment = async (req, res, next) => {
       });
     });
     await db.Contest.bulkCreate(req.body.contests, transaction);
+    // TODO: внаслідок bulkCreate повертати масив id і додавати їх до історії оплат
     transaction.commit();
+    /// якщо тут нічо не звалилось - значить, операція оплати була успішна, ми можемо записати її до історії транзакцій юзера
+    const trans = await db.Transaction.create({
+      userId: req.tokenData.userId,
+      amount: req.body.price,
+      type: 'expence'
+    });
     res.send();
   } catch (err) {
     transaction.rollback();
@@ -198,6 +205,11 @@ module.exports.cashout = async (req, res, next) => {
     },
     transaction);
     transaction.commit();
+    const trans = await db.Transaction.create({
+      userId: req.tokenData.userId,
+      amount: req.body.sum,
+      type: 'cashout'
+    })
     res.send({ balance: updatedUser.balance });
   } catch (err) {
     transaction.rollback();
