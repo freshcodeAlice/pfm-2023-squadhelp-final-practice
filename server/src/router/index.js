@@ -6,6 +6,7 @@ const contestController = require('../controllers/contestController');
 const checkToken = require('../middlewares/checkToken');
 const validators = require('../middlewares/validators');
 const chatController = require('../controllers/chatController');
+const transactionsController = require('../controllers/transactionController');
 const upload = require('../utils/fileUpload');
 const router = express.Router();
 
@@ -177,5 +178,14 @@ router.get(
   checkToken.checkToken,
   chatController.getCatalogs,
 );
+
+// TODO: refactor routes naming
+
+
+router.get(
+  '/transactions',
+  checkToken.checkToken,
+  transactionsController.getUserTransactions
+)
 
 module.exports = router;
