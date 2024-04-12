@@ -41,11 +41,11 @@ module.exports.getContestById = async (req, res, next) => {
     let contestInfo = await db.Contest.findOne({
       where: { id: req.headers.contestid },
       order: [
-        [db.Offers, 'id', 'asc'],
+        [db.Offer, 'id', 'asc'],
       ],
       include: [
         {
-          model: db.Users,
+          model: db.User,
           required: true,
           attributes: {
             exclude: [
@@ -65,7 +65,7 @@ module.exports.getContestById = async (req, res, next) => {
           attributes: { exclude: ['userId', 'contestId'] },
           include: [
             {
-              model: db.Users,
+              model: db.User,
               required: true,
               attributes: {
                 exclude: [
@@ -77,7 +77,7 @@ module.exports.getContestById = async (req, res, next) => {
               },
             },
             {
-              model: db.Ratings,
+              model: db.Rating,
               required: false,
               where: { userId: req.tokenData.userId },
               attributes: { exclude: ['userId', 'offerId'] },

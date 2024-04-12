@@ -9,7 +9,7 @@ module.exports.getUserTransactions = async (req, res, next) => {
             }
         });
         if(foundTransactions) {
-            res.send(foundTransactions)
+            res.status(200).send({data: foundTransactions})
         } else {
             res.status(204)
         }

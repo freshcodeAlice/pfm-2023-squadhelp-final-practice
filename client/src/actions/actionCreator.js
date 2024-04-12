@@ -292,3 +292,19 @@ export const changeModalShow = (data) => ({
   type: ACTION.CHANGE_SHOW_MODAL,
   data,
 });
+
+
+export const getTransationsRequest = () => ({
+  type: ACTION.GET_TRANSACTIONS_REQUEST
+});
+
+
+export const getTransationsSuccess = (payload) => ({
+  type: ACTION.GET_TRANSACTIONS_SUCCESS,
+  payload
+});
+
+export const getTransationsError = (error) => ({
+  type: ACTION.GET_TRANSACTIONS_ERROR,
+  error
+})

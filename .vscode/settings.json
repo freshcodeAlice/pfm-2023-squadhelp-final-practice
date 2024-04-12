@@ -19,6 +19,16 @@
             "database": "todo-dev",
             "password": "password",
             "username": "postgres"
+        },
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "fdfdfdfdf",
+            "database": "todo-dev",
+            "username": "postgres",
+            "password": "password"
         }
     ]
 }

@@ -23,11 +23,13 @@ export const createCatalog = (data) => http.post('createCatalog', data);
 export const deleteCatalog = (data) => http.delete('deleteCatalog', data);
 export const removeChatFromCatalog = (data) => http.put('removeChatFromCatalog', data);
 export const changeCatalogName = (data) => http.put('updateNameCatalog', data);
-export const getCustomersContests = ({limit, offset}) => http.get(`getCustomersContests?limit=${limit}&offset=${offset}`, {
+export const getCustomersContests = ({limit, offset, contestStatus}) => http.get(`getCustomersContests?limit=${limit}&offset=${offset}`, {
   headers: {
-    status: data.contestStatus,
+    status: contestStatus,
   },
 });
+
+export const getUserTransactions = () => http.get('transactions');
 
 export const getActiveContests = ({
   offset, limit, typeIndex, contestId, industry, awardSort, ownEntries,
@@ -40,3 +42,5 @@ export const getContestById = (data) => http.get('getContestById', {
     contestId: data.contestId,
   },
 });
+
+
